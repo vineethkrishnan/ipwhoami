@@ -47,6 +47,10 @@ ipwhoami/
 │       ├── ipinfo.js         # ipinfo.io
 │       ├── ipapi.js          # ipapi.co
 │       └── ip-api.js         # ip-api.com
+├── api/                      # Self-hosted geolocation API
+│   ├── src/                  # Hono app, DB loader, rate limiter
+│   ├── test/                 # API tests
+│   └── scripts/              # DB download script
 ├── scripts/                  # Standalone Bash/PowerShell
 ├── docs/                     # This documentation (Starlight)
 ```

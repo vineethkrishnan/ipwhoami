@@ -69,10 +69,14 @@ ip-api.com's free tier uses **HTTP only** (not HTTPS). Do not send sensitive dat
 
 ## Rate Limits
 
-All providers have rate limits on their free tiers. If you hit a limit, you'll see an error like:
+All third-party providers have rate limits on their free tiers. If you hit a limit, you'll see an error like:
 
 ```
 error: request to https://ipapi.co/8.8.8.8/json failed: HTTP 429
 ```
 
 Wait a moment and retry, or switch to a different provider with `-p`.
+
+## Self-Hosted Alternative
+
+To avoid rate limits entirely, ipwhoami includes a [self-hosted API](/reference/self-hosted-api/) powered by offline databases. It runs on your own infrastructure with zero third-party calls and no rate limits.

@@ -42,6 +42,7 @@ export default defineConfig({
 					items: [
 						{ label: 'CLI Options', slug: 'reference/cli-options' },
 						{ label: 'Providers', slug: 'reference/providers' },
+						{ label: 'Self-Hosted API', slug: 'reference/self-hosted-api' },
 						{ label: 'Standalone Scripts', slug: 'reference/standalone-scripts' },
 					],
 				},

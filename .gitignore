@@ -1,9 +1,36 @@
+# OS
 .DS_Store
+Thumbs.db
+
+# Editors
 *.swp
 *.swo
 *~
+.vscode/
+.idea/
+
+# Dependencies
 node_modules/
+
+# Environment & secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+serviceAccountKey.json
+
+# Databases
+api/data/*.mmdb
+
+# Build artifacts
+dist/
+*.tgz
+
+# Internal
 prd/
 _knowledgebase/
-api/data/*.mmdb
 .plans/
