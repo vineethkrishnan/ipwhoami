@@ -15,9 +15,9 @@
   "scripts": {
     "start": "node bin/ipwhoami.js",
     "lint": "node --check src/**/*.js bin/**/*.js",
-    "test": "node --test 'test/*.test.js'",
-    "test:unit": "node --test 'test/config.test.js' 'test/ip.test.js' 'test/colors.test.js' 'test/formatter.test.js' 'test/providers.test.js'",
-    "test:integration": "node --test 'test/cli.test.js'"
+    "test": "node --test test/config.test.js test/ip.test.js test/colors.test.js test/formatter.test.js test/providers.test.js test/cli.test.js",
+    "test:unit": "node --test test/config.test.js test/ip.test.js test/colors.test.js test/formatter.test.js test/providers.test.js",
+    "test:integration": "node --test test/cli.test.js"
   },
   "keywords": [
     "ip",
