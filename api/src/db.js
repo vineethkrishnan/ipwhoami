@@ -1,29 +1,52 @@
 import { open } from 'maxmind';
-import { stat } from 'node:fs/promises';
+import { stat, readdir } from 'node:fs/promises';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DATA_DIR = join(__dirname, '..', 'data');
 
-const CITY_DB_PATH = join(DATA_DIR, 'dbip-city-lite.mmdb');
-const ASN_DB_PATH = join(DATA_DIR, 'dbip-asn-lite.mmdb');
-
 let cityReader = null;
 let asnReader = null;
+let cityDbPath = null;
+let asnDbPath = null;
 let dbLoadedAt = null;
 
-export async function loadDatabases() {
+async function findMMDB(pattern) {
   try {
-    cityReader = await open(CITY_DB_PATH);
-    asnReader = await open(ASN_DB_PATH);
+    const files = await readdir(DATA_DIR);
+    const match = files.find((f) => f.endsWith('.mmdb') && f.includes(pattern));
+    return match ? join(DATA_DIR, match) : null;
+  } catch {
+    return null;
+  }
+}
+
+export async function loadDatabases() {
+  cityDbPath = await findMMDB('city');
+  asnDbPath = await findMMDB('asn');
+
+  if (!cityDbPath) {
+    throw new Error(
+      `No city MMDB file found in ${DATA_DIR}. ` +
+      `Run "npm run download-db" or place a *city*.mmdb file in api/data/.`
+    );
+  }
+
+  try {
+    cityReader = await open(cityDbPath);
+    if (asnDbPath) asnReader = await open(asnDbPath);
     dbLoadedAt = new Date();
   } catch (err) {
     throw new Error(
       `Failed to load MMDB databases from ${DATA_DIR}. ` +
-      `Run "npm run download-db" first. Original error: ${err.message}`
+      `Original error: ${err.message}`
     );
   }
+
+  const asnStatus = asnReader ? 'loaded' : 'not found (org field will be empty)';
+  console.log(`  City DB: ${cityDbPath}`);
+  console.log(`  ASN DB:  ${asnStatus}`);
 }
 
 export function lookupCity(ip) {
@@ -32,7 +55,7 @@ export function lookupCity(ip) {
 }
 
 export function lookupASN(ip) {
-  if (!asnReader) throw new Error('ASN database not loaded');
+  if (!asnReader) return null;
   return asnReader.get(ip);
 }
 
@@ -41,13 +64,11 @@ export async function getDatabaseMeta() {
   let asnModified = null;
 
   try {
-    const cityStat = await stat(CITY_DB_PATH);
-    cityModified = cityStat.mtime;
+    if (cityDbPath) cityModified = (await stat(cityDbPath)).mtime;
   } catch {}
 
   try {
-    const asnStat = await stat(ASN_DB_PATH);
-    asnModified = asnStat.mtime;
+    if (asnDbPath) asnModified = (await stat(asnDbPath)).mtime;
   } catch {}
 
   const oldestDb = cityModified && asnModified
