@@ -1,10 +1,10 @@
 {
-  "name": "ipwho",
-  "version": "1.0.1",
+  "name": "ipwhoami",
+  "version": "1.0.0",
   "description": "IP geolocation lookup from your terminal. Query multiple providers, compare results side-by-side.",
   "type": "module",
   "bin": {
-    "ipwho": "./bin/ipwho.js"
+    "ipwhoami": "./bin/ipwhoami.js"
   },
   "files": [
     "bin/",
@@ -13,7 +13,7 @@
     "README.md"
   ],
   "scripts": {
-    "start": "node bin/ipwho.js",
+    "start": "node bin/ipwhoami.js",
     "lint": "node --check src/**/*.js bin/**/*.js",
     "test": "node --test 'test/*.test.js'",
     "test:unit": "node --test 'test/config.test.js' 'test/ip.test.js' 'test/colors.test.js' 'test/formatter.test.js' 'test/providers.test.js'",
@@ -37,11 +37,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vineethkrishnan/ipwho.git"
+    "url": "git+https://github.com/vineethkrishnan/ipwhoami.git"
   },
-  "homepage": "https://github.com/vineethkrishnan/ipwho#readme",
+  "homepage": "https://github.com/vineethkrishnan/ipwhoami#readme",
   "bugs": {
-    "url": "https://github.com/vineethkrishnan/ipwho/issues"
+    "url": "https://github.com/vineethkrishnan/ipwhoami/issues"
   },
   "engines": {
     "node": ">=18.0.0"

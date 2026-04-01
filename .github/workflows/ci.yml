@@ -36,8 +36,8 @@ jobs:
 
       - name: Smoke test
         run: |
-          node bin/ipwho.js --help
-          node bin/ipwho.js --version
+          node bin/ipwhoami.js --help
+          node bin/ipwhoami.js --version
 
       - name: Run unit tests
         run: npm run test:unit

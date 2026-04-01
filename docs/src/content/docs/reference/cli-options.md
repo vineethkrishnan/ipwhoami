@@ -1,15 +1,15 @@
 ---
 title: CLI Options
-description: Complete reference for all ipwho command-line options.
+description: Complete reference for all ipwhoami command-line options.
 ---
 
 ## Synopsis
 
 ```
-ipwho [options] [ip]
+ipwhoami [options] [ip]
 ```
 
-If no IP is provided, ipwho fetches your public IP automatically.
+If no IP is provided, ipwhoami fetches your public IP automatically.
 
 ## Arguments
 
@@ -36,23 +36,23 @@ If no IP is provided, ipwho fetches your public IP automatically.
 
 ## Environment
 
-ipwho uses the built-in `fetch` API in Node.js 18+. It respects standard proxy environment variables (`HTTP_PROXY`, `HTTPS_PROXY`) if your Node.js version supports them.
+ipwhoami uses the built-in `fetch` API in Node.js 18+. It respects standard proxy environment variables (`HTTP_PROXY`, `HTTPS_PROXY`) if your Node.js version supports them.
 
 ## Examples
 
 ```bash
 # Auto-detect your IP, default provider
-ipwho
+ipwhoami
 
 # Specific IP, specific provider
-ipwho -p ip-api 1.1.1.1
+ipwhoami -p ip-api 1.1.1.1
 
 # Compare all providers
-ipwho -c 8.8.8.8
+ipwhoami -c 8.8.8.8
 
 # Raw JSON piped to jq
-ipwho -r 8.8.8.8 | jq .city
+ipwhoami -r 8.8.8.8 | jq .city
 
 # Combine flags
-ipwho -c -r 1.1.1.1
+ipwhoami -c -r 1.1.1.1
 ```

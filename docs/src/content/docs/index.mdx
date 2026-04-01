@@ -1,5 +1,5 @@
 ---
-title: ipwho
+title: ipwhoami
 description: IP geolocation lookup from your terminal
 template: splash
 hero:
@@ -10,14 +10,14 @@ hero:
       icon: right-arrow
       variant: primary
     - text: View on GitHub
-      link: https://github.com/vineethkrishnan/ipwho
+      link: https://github.com/vineethkrishnan/ipwhoami
       icon: external
       variant: minimal
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
-## Why ipwho?
+## Why ipwhoami?
 
 <CardGrid>
 	<Card title="Zero Dependencies" icon="rocket">
@@ -38,14 +38,14 @@ import { Card, CardGrid } from '@astrojs/starlight/components';
 
 ```bash
 # Install globally
-npm install -g ipwho
+npm install -g ipwhoami
 
 # Look up any IP
-ipwho 8.8.8.8
+ipwhoami 8.8.8.8
 
 # Compare across all providers
-ipwho -c 1.1.1.1
+ipwhoami -c 1.1.1.1
 
 # Or run without installing
-npx ipwho 8.8.8.8
+npx ipwhoami 8.8.8.8
 ```

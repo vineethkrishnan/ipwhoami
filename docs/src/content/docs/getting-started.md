@@ -1,32 +1,32 @@
 ---
 title: Getting Started
-description: Get up and running with ipwho in under a minute.
+description: Get up and running with ipwhoami in under a minute.
 ---
 
-**ipwho** is a command-line tool that looks up geolocation data for any IP address using free public APIs. It supports multiple providers, lets you compare results side-by-side, and outputs clean JSON for scripting.
+**ipwhoami** is a command-line tool that looks up geolocation data for any IP address using free public APIs. It supports multiple providers, lets you compare results side-by-side, and outputs clean JSON for scripting.
 
 ## Quick Install
 
 The fastest way to get started is via npm:
 
 ```bash
-npm install -g ipwho
+npm install -g ipwhoami
 ```
 
 Or run it directly without installing:
 
 ```bash
-npx ipwho 8.8.8.8
+npx ipwhoami 8.8.8.8
 ```
 
 For other install methods (Bash script, PowerShell), see the [Installation](/installation/) page.
 
 ## Your First Lookup
 
-Run `ipwho` with no arguments to look up your own public IP:
+Run `ipwhoami` with no arguments to look up your own public IP:
 
 ```bash
-ipwho
+ipwhoami
 ```
 
 ```
@@ -46,7 +46,7 @@ Your IP: 203.0.113.42
 Or pass a specific IP:
 
 ```bash
-ipwho 8.8.8.8
+ipwhoami 8.8.8.8
 ```
 
 ## Compare Providers
@@ -54,7 +54,7 @@ ipwho 8.8.8.8
 Use `-c` to see how different providers report the same IP:
 
 ```bash
-ipwho -c 1.1.1.1
+ipwhoami -c 1.1.1.1
 ```
 
 This queries all three providers and shows results side-by-side — useful for verifying accuracy.

@@ -1,4 +1,4 @@
-# ipwho
+# ipwhoami
 
 IP geolocation lookup from your terminal. Query multiple providers and compare results side-by-side.
 
@@ -19,53 +19,53 @@ Works on **macOS**, **Linux**, and **Windows**. Zero dependencies.
 ### npm (recommended)
 
 ```bash
-npm install -g ipwho
+npm install -g ipwhoami
 ```
 
 Or run directly without installing:
 
 ```bash
-npx ipwho 8.8.8.8
+npx ipwhoami 8.8.8.8
 ```
 
 ### Homebrew (macOS / Linux)
 
 ```bash
-brew tap vineethkrishnan/ipwho
-brew install ipwho
+brew tap vineethkrishnan/ipwhoami
+brew install ipwhoami
 ```
 
 ### Scoop (Windows)
 
 ```powershell
-scoop bucket add ipwho https://github.com/vineethkrishnan/scoop-ipwho
-scoop install ipwho
+scoop bucket add ipwhoami https://github.com/vineethkrishnan/scoop-ipwhoami
+scoop install ipwhoami
 ```
 
 ### Docker
 
 ```bash
-docker run --rm vineethkrishnan/ipwho 8.8.8.8
-docker run --rm vineethkrishnan/ipwho -c 1.1.1.1
+docker run --rm vineethkrishnan/ipwhoami 8.8.8.8
+docker run --rm vineethkrishnan/ipwhoami -c 1.1.1.1
 ```
 
 ### Standalone Bash script (macOS / Linux)
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/vineethkrishnan/ipwho/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/vineethkrishnan/ipwhoami/main/install.sh | bash
 ```
 
 ### Standalone PowerShell script (Windows)
 
 ```powershell
-Invoke-WebRequest -Uri "https://raw.githubusercontent.com/vineethkrishnan/ipwho/main/scripts/ipwho.ps1" -OutFile "$HOME\ipwho.ps1"
-Add-Content $PROFILE 'Set-Alias ipwho "$HOME\ipwho.ps1"'
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/vineethkrishnan/ipwhoami/main/scripts/ipwhoami.ps1" -OutFile "$HOME\ipwhoami.ps1"
+Add-Content $PROFILE 'Set-Alias ipwhoami "$HOME\ipwhoami.ps1"'
 ```
 
 ## Usage
 
 ```
-ipwho [options] [ip]
+ipwhoami [options] [ip]
 ```
 
 ### Options
@@ -82,25 +82,25 @@ ipwho [options] [ip]
 
 ```bash
 # Look up your own public IP
-ipwho
+ipwhoami
 
 # Look up a specific IP
-ipwho 8.8.8.8
+ipwhoami 8.8.8.8
 
 # Compare across all providers
-ipwho -c 1.1.1.1
+ipwhoami -c 1.1.1.1
 
 # Use a specific provider
-ipwho -p ipapi 8.8.8.8
+ipwhoami -p ipapi 8.8.8.8
 
 # Get raw JSON (great for piping)
-ipwho -r 8.8.8.8 | jq .city
+ipwhoami -r 8.8.8.8 | jq .city
 ```
 
 ### Sample Output
 
 ```
-$ ipwho -c 8.8.8.8
+$ ipwhoami -c 8.8.8.8
 Comparing geolocation for: 8.8.8.8
 ────────────────────────────────────────
 
@@ -151,9 +151,9 @@ Providers live in `src/providers/`. To add a new one:
 ## Project Structure
 
 ```
-ipwho/
+ipwhoami/
 ├── bin/
-│   └── ipwho.js              # CLI entry point
+│   └── ipwhoami.js              # CLI entry point
 ├── src/
 │   ├── cli.js                # Argument parsing & command routing
 │   ├── colors.js             # Terminal color helpers
@@ -167,8 +167,8 @@ ipwho/
 │       ├── ipapi.js          # ipapi.co
 │       └── ip-api.js         # ip-api.com
 ├── scripts/
-│   ├── ipwho.sh              # Standalone Bash version
-│   └── ipwho.ps1             # Standalone PowerShell version
+│   ├── ipwhoami.sh              # Standalone Bash version
+│   └── ipwhoami.ps1             # Standalone PowerShell version
 ├── test/                     # Unit & integration tests
 ├── docs/                     # Starlight documentation site
 ├── Dockerfile

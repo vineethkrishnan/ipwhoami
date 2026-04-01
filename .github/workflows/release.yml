@@ -48,8 +48,8 @@ jobs:
 
       - name: Smoke test
         run: |
-          node bin/ipwho.js --help
-          node bin/ipwho.js --version
+          node bin/ipwhoami.js --help
+          node bin/ipwhoami.js --version
 
       - name: Publish to npm
         run: npm publish --access public
@@ -90,10 +90,10 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm64
           tags: |
-            vineethkrishnan/ipwho:latest
-            vineethkrishnan/ipwho:${{ needs.release-please.outputs.version }}
-            ghcr.io/vineethkrishnan/ipwho:latest
-            ghcr.io/vineethkrishnan/ipwho:${{ needs.release-please.outputs.version }}
+            vineethkrishnan/ipwhoami:latest
+            vineethkrishnan/ipwhoami:${{ needs.release-please.outputs.version }}
+            ghcr.io/vineethkrishnan/ipwhoami:latest
+            ghcr.io/vineethkrishnan/ipwhoami:${{ needs.release-please.outputs.version }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
@@ -110,7 +110,7 @@ jobs:
         id: sha
         run: |
           TAG="${{ needs.release-please.outputs.tag_name }}"
-          URL="https://github.com/vineethkrishnan/ipwho/archive/refs/tags/${TAG}.tar.gz"
+          URL="https://github.com/vineethkrishnan/ipwhoami/archive/refs/tags/${TAG}.tar.gz"
           SHA=$(curl -sL "$URL" | sha256sum | cut -d' ' -f1)
           echo "sha256=$SHA" >> $GITHUB_OUTPUT
           echo "url=$URL" >> $GITHUB_OUTPUT
@@ -118,15 +118,15 @@ jobs:
       - name: Checkout Homebrew tap
         uses: actions/checkout@v4
         with:
-          repository: vineethkrishnan/homebrew-ipwho
+          repository: vineethkrishnan/homebrew-ipwhoami
           token: ${{ secrets.RELEASE_PAT }}
 
       - name: Update formula
         run: |
-          cat > Formula/ipwho.rb << 'FORMULA'
-          class Ipwho < Formula
+          cat > Formula/ipwhoami.rb << 'FORMULA'
+          class Ipwhoami < Formula
             desc "IP geolocation lookup from your terminal"
-            homepage "https://github.com/vineethkrishnan/ipwho"
+            homepage "https://github.com/vineethkrishnan/ipwhoami"
             url "${{ steps.sha.outputs.url }}"
             sha256 "${{ steps.sha.outputs.sha256 }}"
             license "MIT"
@@ -135,11 +135,11 @@ jobs:
 
             def install
               libexec.install "bin", "src", "package.json"
-              bin.install_symlink libexec/"bin/ipwho.js" => "ipwho"
+              bin.install_symlink libexec/"bin/ipwhoami.js" => "ipwhoami"
             end
 
             test do
-              assert_match "ipwho", shell_output("#{bin}/ipwho --version")
+              assert_match "ipwhoami", shell_output("#{bin}/ipwhoami --version")
             end
           end
           FORMULA
@@ -148,8 +148,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add Formula/ipwho.rb
-          git commit -m "Update ipwho to ${{ needs.release-please.outputs.version }}"
+          git add Formula/ipwhoami.rb
+          git commit -m "Update ipwhoami to ${{ needs.release-please.outputs.version }}"
           git push
 
   update-scoop:
@@ -165,30 +165,30 @@ jobs:
         id: sha
         run: |
           TAG="${{ needs.release-please.outputs.tag_name }}"
-          URL="https://github.com/vineethkrishnan/ipwho/archive/refs/tags/${TAG}.tar.gz"
+          URL="https://github.com/vineethkrishnan/ipwhoami/archive/refs/tags/${TAG}.tar.gz"
           SHA=$(curl -sL "$URL" | sha256sum | cut -d' ' -f1)
           echo "sha256=$SHA" >> $GITHUB_OUTPUT
 
       - name: Checkout Scoop bucket
         uses: actions/checkout@v4
         with:
-          repository: vineethkrishnan/scoop-ipwho
+          repository: vineethkrishnan/scoop-ipwhoami
           token: ${{ secrets.RELEASE_PAT }}
 
       - name: Write updated manifest
         run: |
           VERSION="${{ needs.release-please.outputs.version }}"
           SHA="${{ steps.sha.outputs.sha256 }}"
-          cat > ipwho.json << EOF
+          cat > ipwhoami.json << EOF
           {
               "version": "${VERSION}",
               "description": "IP geolocation lookup from your terminal",
-              "homepage": "https://github.com/vineethkrishnan/ipwho",
+              "homepage": "https://github.com/vineethkrishnan/ipwhoami",
               "license": "MIT",
-              "url": "https://github.com/vineethkrishnan/ipwho/archive/refs/tags/v${VERSION}.tar.gz",
+              "url": "https://github.com/vineethkrishnan/ipwhoami/archive/refs/tags/v${VERSION}.tar.gz",
               "hash": "${SHA}",
               "depends": "nodejs",
-              "extract_dir": "ipwho-${VERSION}",
+              "extract_dir": "ipwhoami-${VERSION}",
               "installer": {
                   "script": [
                       "New-Item -ItemType Directory -Force -Path \"\$dir\\\\libexec\" | Out-Null",
@@ -199,16 +199,16 @@ jobs:
               },
               "bin": [
                   [
-                      "libexec\\\\bin\\\\ipwho.js",
-                      "ipwho"
+                      "libexec\\\\bin\\\\ipwhoami.js",
+                      "ipwhoami"
                   ]
               ],
               "checkver": {
-                  "github": "https://github.com/vineethkrishnan/ipwho"
+                  "github": "https://github.com/vineethkrishnan/ipwhoami"
               },
               "autoupdate": {
-                  "url": "https://github.com/vineethkrishnan/ipwho/archive/refs/tags/v\$version.tar.gz",
-                  "extract_dir": "ipwho-\$version"
+                  "url": "https://github.com/vineethkrishnan/ipwhoami/archive/refs/tags/v\$version.tar.gz",
+                  "extract_dir": "ipwhoami-\$version"
               }
           }
           EOF
@@ -217,6 +217,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add ipwho.json
-          git commit -m "Update ipwho to ${{ needs.release-please.outputs.version }}"
+          git add ipwhoami.json
+          git commit -m "Update ipwhoami to ${{ needs.release-please.outputs.version }}"
           git push

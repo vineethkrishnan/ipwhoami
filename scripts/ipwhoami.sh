@@ -24,10 +24,10 @@ fi
 
 usage() {
   cat <<EOF
-${BOLD}ipwho${RESET} - IP geolocation lookup from your terminal
+${BOLD}ipwhoami${RESET} - IP geolocation lookup from your terminal
 
 ${BOLD}USAGE${RESET}
-  ipwho [options] [ip]
+  ipwhoami [options] [ip]
 
 ${BOLD}ARGUMENTS${RESET}
   ip                    IP address to look up (defaults to your public IP)
@@ -40,12 +40,12 @@ ${BOLD}OPTIONS${RESET}
   -v, --version         Show version
 
 ${BOLD}EXAMPLES${RESET}
-  ipwho                          Look up your own public IP
-  ipwho 8.8.8.8                  Look up a specific IP
-  ipwho -c                       Compare your IP across all providers
-  ipwho -c 1.1.1.1              Compare a specific IP across all providers
-  ipwho -p ipapi 8.8.8.8        Use a specific provider
-  ipwho -r 8.8.8.8              Raw JSON output (pipe-friendly)
+  ipwhoami                          Look up your own public IP
+  ipwhoami 8.8.8.8                  Look up a specific IP
+  ipwhoami -c                       Compare your IP across all providers
+  ipwhoami -c 1.1.1.1              Compare a specific IP across all providers
+  ipwhoami -p ipapi 8.8.8.8        Use a specific provider
+  ipwhoami -r 8.8.8.8              Raw JSON output (pipe-friendly)
 EOF
 }
 
@@ -193,7 +193,7 @@ main() {
   while [[ $# -gt 0 ]]; do
     case "$1" in
       -h|--help)     usage; exit 0 ;;
-      -v|--version)  echo "ipwho $VERSION"; exit 0 ;;
+      -v|--version)  echo "ipwhoami $VERSION"; exit 0 ;;
       -p|--provider) provider="${2:-}"; [ -z "$provider" ] && die "--provider requires a value."; shift 2 ;;
       -c|--compare)  compare=true; shift ;;
       -r|--raw)      raw=true; shift ;;

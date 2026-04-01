@@ -7,7 +7,7 @@ import { dirname, join } from 'node:path';
 
 const exec = promisify(execFile);
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const CLI = join(__dirname, '..', 'bin', 'ipwho.js');
+const CLI = join(__dirname, '..', 'bin', 'ipwhoami.js');
 
 function runCLI(args = []) {
   return exec('node', [CLI, ...args], { timeout: 10000 });
@@ -17,7 +17,7 @@ describe('CLI integration', () => {
   describe('--help', () => {
     it('prints usage information', async () => {
       const { stdout } = await runCLI(['--help']);
-      assert.ok(stdout.includes('ipwho'));
+      assert.ok(stdout.includes('ipwhoami'));
       assert.ok(stdout.includes('USAGE'));
       assert.ok(stdout.includes('OPTIONS'));
       assert.ok(stdout.includes('EXAMPLES'));
@@ -53,12 +53,12 @@ describe('CLI integration', () => {
   describe('--version', () => {
     it('prints version string', async () => {
       const { stdout } = await runCLI(['--version']);
-      assert.match(stdout.trim(), /^ipwho \d+\.\d+\.\d+$/);
+      assert.match(stdout.trim(), /^ipwhoami \d+\.\d+\.\d+$/);
     });
 
     it('works with short flag -v', async () => {
       const { stdout } = await runCLI(['-v']);
-      assert.match(stdout.trim(), /^ipwho \d+\.\d+\.\d+$/);
+      assert.match(stdout.trim(), /^ipwhoami \d+\.\d+\.\d+$/);
     });
   });
 

@@ -5,12 +5,12 @@ description: Use raw JSON output for scripting and piping.
 
 ## Overview
 
-The `-r` / `--raw` flag outputs clean JSON instead of the formatted table. This makes ipwho composable with other tools.
+The `-r` / `--raw` flag outputs clean JSON instead of the formatted table. This makes ipwhoami composable with other tools.
 
 ## Usage
 
 ```bash
-ipwho -r 8.8.8.8
+ipwhoami -r 8.8.8.8
 ```
 
 ```json
@@ -31,11 +31,11 @@ Extract specific fields:
 
 ```bash
 # Get just the city
-ipwho -r 8.8.8.8 | jq -r .city
+ipwhoami -r 8.8.8.8 | jq -r .city
 # Mountain View
 
 # Get coordinates
-ipwho -r 8.8.8.8 | jq -r .location
+ipwhoami -r 8.8.8.8 | jq -r .location
 # 37.4056,-122.0775
 ```
 
@@ -44,7 +44,7 @@ ipwho -r 8.8.8.8 | jq -r .location
 ```bash
 #!/bin/bash
 IP="8.8.8.8"
-COUNTRY=$(ipwho -r "$IP" | jq -r .country)
+COUNTRY=$(ipwhoami -r "$IP" | jq -r .country)
 
 if [ "$COUNTRY" = "US" ]; then
   echo "US-based IP"
@@ -56,7 +56,7 @@ fi
 Combine `-r` with `-c` to get JSON from all providers:
 
 ```bash
-ipwho -c -r 1.1.1.1
+ipwhoami -c -r 1.1.1.1
 ```
 
 Each provider's output is a separate JSON object, prefixed with a comment line (`// ipinfo`, `// ipapi`, etc.) for easy parsing.

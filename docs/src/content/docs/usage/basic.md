@@ -1,6 +1,6 @@
 ---
 title: Basic Usage
-description: Core usage patterns for ipwho.
+description: Core usage patterns for ipwhoami.
 ---
 
 ## Look Up Your Public IP
@@ -8,7 +8,7 @@ description: Core usage patterns for ipwho.
 Run with no arguments to auto-detect and look up your own IP:
 
 ```bash
-ipwho
+ipwhoami
 ```
 
 ```
@@ -30,23 +30,23 @@ Your IP: 203.0.113.42
 Pass an IPv4 or IPv6 address as an argument:
 
 ```bash
-ipwho 8.8.8.8
+ipwhoami 8.8.8.8
 ```
 
 ```bash
-ipwho 2001:4860:4860::8888
+ipwhoami 2001:4860:4860::8888
 ```
 
 ## Choose a Provider
 
-By default, ipwho uses `ipinfo.io`. Switch with `-p`:
+By default, ipwhoami uses `ipinfo.io`. Switch with `-p`:
 
 ```bash
 # Use ipapi.co
-ipwho -p ipapi 8.8.8.8
+ipwhoami -p ipapi 8.8.8.8
 
 # Use ip-api.com
-ipwho -p ip-api 8.8.8.8
+ipwhoami -p ip-api 8.8.8.8
 ```
 
 See [Providers](/reference/providers/) for details on each provider.
@@ -57,8 +57,8 @@ Flags can be combined freely:
 
 ```bash
 # Raw JSON from a specific provider
-ipwho -r -p ipapi 1.1.1.1
+ipwhoami -r -p ipapi 1.1.1.1
 
 # Compare all providers with raw output
-ipwho -c -r 8.8.8.8
+ipwhoami -c -r 8.8.8.8
 ```

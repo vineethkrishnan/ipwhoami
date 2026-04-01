@@ -1,9 +1,9 @@
 ---
 title: Adding a Provider
-description: How to add a new geolocation provider to ipwho.
+description: How to add a new geolocation provider to ipwhoami.
 ---
 
-ipwho uses a provider pattern that makes adding new sources straightforward. Each provider is a single file that implements one method.
+ipwhoami uses a provider pattern that makes adding new sources straightforward. Each provider is a single file that implements one method.
 
 ## Provider Interface
 
@@ -89,7 +89,7 @@ export const PROVIDER_NAMES = ['ipinfo', 'ipapi', 'ip-api', 'my-provider'];
 ### 4. Test it
 
 ```bash
-node bin/ipwho.js -p my-provider 8.8.8.8
+node bin/ipwhoami.js -p my-provider 8.8.8.8
 ```
 
 That's it. The new provider automatically works with compare mode, raw output, and all CLI flags.

@@ -1,6 +1,6 @@
 ---
 title: Contributing
-description: How to contribute to ipwho.
+description: How to contribute to ipwhoami.
 ---
 
 Contributions are welcome! Whether it's a bug fix, new provider, or documentation improvement.
@@ -8,20 +8,20 @@ Contributions are welcome! Whether it's a bug fix, new provider, or documentatio
 ## Setup
 
 ```bash
-git clone https://github.com/vineethkrishnan/ipwho.git
-cd ipwho
+git clone https://github.com/vineethkrishnan/ipwhoami.git
+cd ipwhoami
 ```
 
-No `npm install` needed — ipwho has zero dependencies.
+No `npm install` needed — ipwhoami has zero dependencies.
 
 ## Development
 
 Run the CLI directly:
 
 ```bash
-node bin/ipwho.js --help
-node bin/ipwho.js 8.8.8.8
-node bin/ipwho.js -c 1.1.1.1
+node bin/ipwhoami.js --help
+node bin/ipwhoami.js 8.8.8.8
+node bin/ipwhoami.js -c 1.1.1.1
 ```
 
 Check syntax:
@@ -33,8 +33,8 @@ node --check src/**/*.js bin/**/*.js
 ## Project Structure
 
 ```
-ipwho/
-├── bin/ipwho.js              # CLI entry point
+ipwhoami/
+├── bin/ipwhoami.js              # CLI entry point
 ├── src/
 │   ├── cli.js                # Argument parsing & routing
 │   ├── colors.js             # Terminal colors
@@ -55,7 +55,7 @@ ipwho/
 
 1. Create a branch for your change
 2. Make your edits
-3. Test locally with `node bin/ipwho.js`
+3. Test locally with `node bin/ipwhoami.js`
 4. Submit a pull request
 
 ## Adding a Provider

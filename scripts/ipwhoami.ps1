@@ -2,7 +2,7 @@
 
 <#
 .SYNOPSIS
-    ipwho - IP geolocation lookup from your terminal
+    ipwhoami - IP geolocation lookup from your terminal
 .DESCRIPTION
     Look up geolocation data for any IP address using multiple providers.
     Works on Windows, macOS, and Linux via PowerShell.
@@ -38,10 +38,10 @@ $SelfIpUrl = "https://api.ipify.org"
 
 function Show-Usage {
     Write-Host @"
-ipwho - IP geolocation lookup from your terminal
+ipwhoami - IP geolocation lookup from your terminal
 
 USAGE
-  ipwho [options] [ip]
+  ipwhoami [options] [ip]
 
 ARGUMENTS
   ip                    IP address to look up (defaults to your public IP)
@@ -54,12 +54,12 @@ OPTIONS
   -Version              Show version
 
 EXAMPLES
-  ipwho                          Look up your own public IP
-  ipwho 8.8.8.8                  Look up a specific IP
-  ipwho -Compare                 Compare your IP across all providers
-  ipwho -Compare 1.1.1.1        Compare a specific IP across all providers
-  ipwho -Provider ipapi 8.8.8.8 Use a specific provider
-  ipwho -Raw 8.8.8.8            Raw JSON output (pipe-friendly)
+  ipwhoami                          Look up your own public IP
+  ipwhoami 8.8.8.8                  Look up a specific IP
+  ipwhoami -Compare                 Compare your IP across all providers
+  ipwhoami -Compare 1.1.1.1        Compare a specific IP across all providers
+  ipwhoami -Provider ipapi 8.8.8.8 Use a specific provider
+  ipwhoami -Raw 8.8.8.8            Raw JSON output (pipe-friendly)
 "@
 }
 
@@ -177,7 +177,7 @@ function Show-Result {
 # ===========================================================================
 
 if ($Help) { Show-Usage; exit 0 }
-if ($Version) { Write-Host "ipwho $AppVersion"; exit 0 }
+if ($Version) { Write-Host "ipwhoami $AppVersion"; exit 0 }
 
 # Resolve IP
 if ([string]::IsNullOrWhiteSpace($IP)) {

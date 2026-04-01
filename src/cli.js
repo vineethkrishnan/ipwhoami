@@ -5,10 +5,10 @@ import { getProvider, getAllProviders } from './providers/index.js';
 import { formatResult, formatRaw, formatCompareHeader } from './formatter.js';
 
 function printUsage() {
-  console.log(`${bold('ipwho')} - IP geolocation lookup from your terminal
+  console.log(`${bold('ipwhoami')} - IP geolocation lookup from your terminal
 
 ${bold('USAGE')}
-  ipwho [options] [ip]
+  ipwhoami [options] [ip]
 
 ${bold('ARGUMENTS')}
   ip                    IP address to look up (defaults to your public IP)
@@ -21,12 +21,12 @@ ${bold('OPTIONS')}
   -v, --version         Show version
 
 ${bold('EXAMPLES')}
-  ipwho                          Look up your own public IP
-  ipwho 8.8.8.8                  Look up a specific IP
-  ipwho -c                       Compare your IP across all providers
-  ipwho -c 1.1.1.1              Compare a specific IP across all providers
-  ipwho -p ipapi 8.8.8.8        Use a specific provider
-  ipwho -r 8.8.8.8              Raw JSON output (pipe-friendly)`);
+  ipwhoami                          Look up your own public IP
+  ipwhoami 8.8.8.8                  Look up a specific IP
+  ipwhoami -c                       Compare your IP across all providers
+  ipwhoami -c 1.1.1.1              Compare a specific IP across all providers
+  ipwhoami -p ipapi 8.8.8.8        Use a specific provider
+  ipwhoami -r 8.8.8.8              Raw JSON output (pipe-friendly)`);
 }
 
 function parseArgs(argv) {
@@ -120,7 +120,7 @@ export async function run(argv) {
   }
 
   if (opts.version) {
-    console.log(`ipwho ${VERSION}`);
+    console.log(`ipwhoami ${VERSION}`);
     return;
   }
 

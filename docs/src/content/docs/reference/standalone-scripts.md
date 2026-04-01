@@ -1,9 +1,9 @@
 ---
 title: Standalone Scripts
-description: Use ipwho without Node.js via Bash or PowerShell scripts.
+description: Use ipwhoami without Node.js via Bash or PowerShell scripts.
 ---
 
-ipwho ships standalone scripts for environments where Node.js isn't available. These are feature-equivalent to the npm version.
+ipwhoami ships standalone scripts for environments where Node.js isn't available. These are feature-equivalent to the npm version.
 
 ## Bash Script (macOS / Linux)
 
@@ -12,7 +12,7 @@ ipwho ships standalone scripts for environments where Node.js isn't available. T
 ### Install
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/vineethkrishnan/ipwho/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/vineethkrishnan/ipwhoami/main/install.sh | bash
 ```
 
 ### Usage
@@ -20,16 +20,16 @@ curl -fsSL https://raw.githubusercontent.com/vineethkrishnan/ipwho/main/install.
 The Bash script accepts the same flags as the npm version:
 
 ```bash
-ipwho                      # Your public IP
-ipwho 8.8.8.8              # Specific IP
-ipwho -c 1.1.1.1           # Compare mode
-ipwho -p ipapi 8.8.8.8     # Choose provider
-ipwho -r 8.8.8.8           # Raw JSON
+ipwhoami                      # Your public IP
+ipwhoami 8.8.8.8              # Specific IP
+ipwhoami -c 1.1.1.1           # Compare mode
+ipwhoami -p ipapi 8.8.8.8     # Choose provider
+ipwhoami -r 8.8.8.8           # Raw JSON
 ```
 
 ### Location
 
-After install, the script lives at `/usr/local/bin/ipwho`.
+After install, the script lives at `/usr/local/bin/ipwhoami`.
 
 ## PowerShell Script (Windows / macOS / Linux)
 
@@ -38,10 +38,10 @@ After install, the script lives at `/usr/local/bin/ipwho`.
 ### Install
 
 ```powershell
-Invoke-WebRequest -Uri "https://raw.githubusercontent.com/vineethkrishnan/ipwho/main/scripts/ipwho.ps1" -OutFile "$HOME\ipwho.ps1"
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/vineethkrishnan/ipwhoami/main/scripts/ipwhoami.ps1" -OutFile "$HOME\ipwhoami.ps1"
 
 # Add alias
-Add-Content $PROFILE 'Set-Alias ipwho "$HOME\ipwho.ps1"'
+Add-Content $PROFILE 'Set-Alias ipwhoami "$HOME\ipwhoami.ps1"'
 ```
 
 ### Usage
@@ -49,11 +49,11 @@ Add-Content $PROFILE 'Set-Alias ipwho "$HOME\ipwho.ps1"'
 PowerShell uses named parameters:
 
 ```powershell
-ipwho                              # Your public IP
-ipwho 8.8.8.8                      # Specific IP
-ipwho -Compare 1.1.1.1             # Compare mode
-ipwho -Provider ipapi 8.8.8.8      # Choose provider
-ipwho -Raw 8.8.8.8                 # Raw JSON
+ipwhoami                              # Your public IP
+ipwhoami 8.8.8.8                      # Specific IP
+ipwhoami -Compare 1.1.1.1             # Compare mode
+ipwhoami -Provider ipapi 8.8.8.8      # Choose provider
+ipwhoami -Raw 8.8.8.8                 # Raw JSON
 ```
 
 ## Feature Comparison

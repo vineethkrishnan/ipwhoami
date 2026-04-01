@@ -1,9 +1,9 @@
 ---
 title: Providers
-description: Details on each geolocation provider supported by ipwho.
+description: Details on each geolocation provider supported by ipwhoami.
 ---
 
-ipwho normalizes the response from each provider into a consistent format:
+ipwhoami normalizes the response from each provider into a consistent format:
 
 ```json
 {
@@ -28,7 +28,7 @@ ipwho normalizes the response from each provider into a consistent format:
 | **API docs** | [ipinfo.io/developers](https://ipinfo.io/developers) |
 
 ```bash
-ipwho -p ipinfo 8.8.8.8
+ipwhoami -p ipinfo 8.8.8.8
 ```
 
 Returns IP, city, region, country (ISO code), org (ASN + name), coordinates as `lat,lon`, and timezone.
@@ -43,10 +43,10 @@ Returns IP, city, region, country (ISO code), org (ASN + name), coordinates as `
 | **API docs** | [ipapi.co](https://ipapi.co) |
 
 ```bash
-ipwho -p ipapi 8.8.8.8
+ipwhoami -p ipapi 8.8.8.8
 ```
 
-Returns IP, city, region, country (full name), org, separate lat/lon (combined by ipwho), and timezone.
+Returns IP, city, region, country (full name), org, separate lat/lon (combined by ipwhoami), and timezone.
 
 ## ip-api.com
 
@@ -58,7 +58,7 @@ Returns IP, city, region, country (full name), org, separate lat/lon (combined b
 | **API docs** | [ip-api.com/docs](http://ip-api.com/docs) |
 
 ```bash
-ipwho -p ip-api 8.8.8.8
+ipwhoami -p ip-api 8.8.8.8
 ```
 
 Returns query IP, city, region name, country, ISP (mapped to `org`), separate lat/lon, and timezone.

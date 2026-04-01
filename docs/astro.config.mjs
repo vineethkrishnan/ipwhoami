@@ -6,13 +6,13 @@ import starlight from '@astrojs/starlight';
 export default defineConfig({
 	integrations: [
 		starlight({
-			title: 'ipwho',
+			title: 'ipwhoami',
 			description: 'IP geolocation lookup from your terminal',
 			social: [
-				{ icon: 'github', label: 'GitHub', href: 'https://github.com/vineethkrishnan/ipwho' },
+				{ icon: 'github', label: 'GitHub', href: 'https://github.com/vineethkrishnan/ipwhoami' },
 			],
 			editLink: {
-				baseUrl: 'https://github.com/vineethkrishnan/ipwho/edit/main/docs/',
+				baseUrl: 'https://github.com/vineethkrishnan/ipwhoami/edit/main/docs/',
 			},
 			head: [
 				{

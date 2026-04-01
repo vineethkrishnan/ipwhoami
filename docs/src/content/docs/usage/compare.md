@@ -10,7 +10,7 @@ Different geolocation providers can return different results for the same IP. Co
 ## Usage
 
 ```bash
-ipwho -c 8.8.8.8
+ipwhoami -c 8.8.8.8
 ```
 
 ```
@@ -50,7 +50,7 @@ Comparing geolocation for: 8.8.8.8
 Omit the IP argument to compare your public IP:
 
 ```bash
-ipwho -c
+ipwhoami -c
 ```
 
 ## Compare with Raw JSON
@@ -58,7 +58,7 @@ ipwho -c
 Combine with `-r` for machine-readable output:
 
 ```bash
-ipwho -c -r 1.1.1.1
+ipwhoami -c -r 1.1.1.1
 ```
 
 This outputs each provider's result as a separate JSON block, labeled with a comment line.
