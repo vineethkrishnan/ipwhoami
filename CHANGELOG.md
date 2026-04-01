@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.2.0](https://github.com/vineethkrishnan/ipwhoami/compare/ipwhoami-v1.1.1...ipwhoami-v1.2.0) (2026-04-01)
+
+
+### Features
+
+* **api:** add self-hosted IP geolocation API service ([d9090ff](https://github.com/vineethkrishnan/ipwhoami/commit/d9090ff246b5c7252d4b24dc15ccb79596ecc2e9))
+
+
+### Bug Fixes
+
+* **api:** make DB loader flexible — auto-detect MMDB files, ASN optional ([5194919](https://github.com/vineethkrishnan/ipwhoami/commit/5194919445aecef91c48ae3bbeea986271e00ea8))
+* **api:** relax test assertion — DB-IP Lite may not include timezone ([12b4305](https://github.com/vineethkrishnan/ipwhoami/commit/12b43053c8aa7028802e4e2820b0da0c602dd0ae))
+
 ## [1.1.1](https://github.com/vineethkrishnan/ipwhoami/compare/ipwhoami-v1.1.0...ipwhoami-v1.1.1) (2026-04-01)
 
 
