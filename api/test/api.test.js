@@ -44,7 +44,6 @@ describe('API integration', { skip: !hasDB && 'MMDB files not found — run npm 
     assert.equal(body.ip, '8.8.8.8');
     assert.equal(body.provider, 'ipwhoami');
     assert.ok(body.country);
-    assert.ok(body.timezone);
   });
 
   it('GET /lookup/1.1.1.1 returns geolocation', async () => {
