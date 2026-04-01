@@ -28,26 +28,37 @@ Or run directly without installing:
 npx ipwho 8.8.8.8
 ```
 
+### Homebrew (macOS / Linux)
+
+```bash
+brew tap vineethkrishnan/ipwho
+brew install ipwho
+```
+
+### Scoop (Windows)
+
+```powershell
+scoop bucket add ipwho https://github.com/vineethkrishnan/scoop-ipwho
+scoop install ipwho
+```
+
+### Docker
+
+```bash
+docker run --rm vineethkrishnan/ipwho 8.8.8.8
+docker run --rm vineethkrishnan/ipwho -c 1.1.1.1
+```
+
 ### Standalone Bash script (macOS / Linux)
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/vineethkrishnan/ipwho/main/install.sh | bash
 ```
 
-Or manually:
-
-```bash
-curl -O https://raw.githubusercontent.com/vineethkrishnan/ipwho/main/scripts/ipwho.sh
-chmod +x ipwho.sh
-sudo mv ipwho.sh /usr/local/bin/ipwho
-```
-
 ### Standalone PowerShell script (Windows)
 
 ```powershell
 Invoke-WebRequest -Uri "https://raw.githubusercontent.com/vineethkrishnan/ipwho/main/scripts/ipwho.ps1" -OutFile "$HOME\ipwho.ps1"
-
-# Add an alias to your PowerShell profile
 Add-Content $PROFILE 'Set-Alias ipwho "$HOME\ipwho.ps1"'
 ```
 
@@ -158,9 +169,14 @@ ipwho/
 ├── scripts/
 │   ├── ipwho.sh              # Standalone Bash version
 │   └── ipwho.ps1             # Standalone PowerShell version
+├── test/                     # Unit & integration tests
+├── docs/                     # Starlight documentation site
+├── Dockerfile
 ├── .github/workflows/
 │   ├── ci.yml                # Lint & test on PRs
-│   └── release.yml           # GitHub Release + npm publish on tags
+│   ├── release.yml           # GitHub Release + npm + Homebrew + Scoop
+│   ├── docker.yml            # Docker Hub + GHCR publish
+│   └── deploy-docs.yml       # Cloudflare Pages docs deploy
 ├── package.json
 ├── CHANGELOG.md
 ├── LICENSE
@@ -172,20 +188,26 @@ ipwho/
 To publish a new version:
 
 ```bash
-# 1. Bump version in package.json and config.js
+# 1. Bump version in package.json and src/config.js
 # 2. Update CHANGELOG.md
 # 3. Commit, tag, and push
 git tag v1.0.0
 git push origin v1.0.0
 ```
 
-The GitHub Actions workflow will automatically create a GitHub Release and publish to npm.
+The release workflow automatically:
+- Creates a GitHub Release
+- Publishes to npm
+- Updates the Homebrew formula
+- Updates the Scoop manifest
+- Builds and pushes Docker images (Docker Hub + GHCR)
 
 ## Requirements
 
-- **npm version**: Node.js >= 18 (uses built-in `fetch`)
-- **Bash version**: `curl` + `jq`
-- **PowerShell version**: PowerShell 5.1+ or 7+
+- **npm / Homebrew / Scoop**: Node.js >= 18
+- **Docker**: No requirements (Node.js included in image)
+- **Bash script**: `curl` + `jq`
+- **PowerShell script**: PowerShell 5.1+ or 7+
 
 ## License
 

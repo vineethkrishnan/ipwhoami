@@ -69,3 +69,130 @@ jobs:
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  update-homebrew:
+    name: Update Homebrew Formula
+    needs: release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Extract version
+        id: version
+        run: echo "version=${GITHUB_REF_NAME#v}" >> $GITHUB_OUTPUT
+
+      - name: Download source tarball and compute SHA256
+        id: sha
+        run: |
+          URL="https://github.com/vineethkrishnan/ipwho/archive/refs/tags/${{ github.ref_name }}.tar.gz"
+          SHA=$(curl -sL "$URL" | sha256sum | cut -d' ' -f1)
+          echo "sha256=$SHA" >> $GITHUB_OUTPUT
+          echo "url=$URL" >> $GITHUB_OUTPUT
+
+      - name: Checkout Homebrew tap
+        uses: actions/checkout@v4
+        with:
+          repository: vineethkrishnan/homebrew-ipwho
+          token: ${{ secrets.TAP_GITHUB_TOKEN }}
+
+      - name: Update formula
+        run: |
+          cat > Formula/ipwho.rb << 'FORMULA'
+          class Ipwho < Formula
+            desc "IP geolocation lookup from your terminal"
+            homepage "https://github.com/vineethkrishnan/ipwho"
+            url "${{ steps.sha.outputs.url }}"
+            sha256 "${{ steps.sha.outputs.sha256 }}"
+            license "MIT"
+
+            depends_on "node" => ">=18"
+
+            def install
+              libexec.install "bin", "src", "package.json"
+              bin.install_symlink libexec/"bin/ipwho.js" => "ipwho"
+            end
+
+            test do
+              assert_match "ipwho", shell_output("#{bin}/ipwho --version")
+            end
+          end
+          FORMULA
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add Formula/ipwho.rb
+          git commit -m "Update ipwho to ${{ steps.version.outputs.version }}"
+          git push
+
+  update-scoop:
+    name: Update Scoop Manifest
+    needs: release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Extract version
+        id: version
+        run: echo "version=${GITHUB_REF_NAME#v}" >> $GITHUB_OUTPUT
+
+      - name: Download source tarball and compute SHA256
+        id: sha
+        run: |
+          URL="https://github.com/vineethkrishnan/ipwho/archive/refs/tags/${{ github.ref_name }}.tar.gz"
+          SHA=$(curl -sL "$URL" | sha256sum | cut -d' ' -f1)
+          echo "sha256=$SHA" >> $GITHUB_OUTPUT
+
+      - name: Checkout Scoop bucket
+        uses: actions/checkout@v4
+        with:
+          repository: vineethkrishnan/scoop-ipwho
+          token: ${{ secrets.TAP_GITHUB_TOKEN }}
+
+      - name: Update manifest
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Write updated manifest
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          SHA="${{ steps.sha.outputs.sha256 }}"
+          cat > ipwho.json << EOF
+          {
+              "version": "${VERSION}",
+              "description": "IP geolocation lookup from your terminal",
+              "homepage": "https://github.com/vineethkrishnan/ipwho",
+              "license": "MIT",
+              "url": "https://github.com/vineethkrishnan/ipwho/archive/refs/tags/v${VERSION}.tar.gz",
+              "hash": "${SHA}",
+              "depends": "nodejs",
+              "extract_dir": "ipwho-${VERSION}",
+              "installer": {
+                  "script": [
+                      "New-Item -ItemType Directory -Force -Path \"\$dir\\\\libexec\" | Out-Null",
+                      "Copy-Item -Recurse \"\$dir\\\\bin\" \"\$dir\\\\libexec\\\\bin\"",
+                      "Copy-Item -Recurse \"\$dir\\\\src\" \"\$dir\\\\libexec\\\\src\"",
+                      "Copy-Item \"\$dir\\\\package.json\" \"\$dir\\\\libexec\\\\package.json\""
+                  ]
+              },
+              "bin": [
+                  [
+                      "libexec\\\\bin\\\\ipwho.js",
+                      "ipwho"
+                  ]
+              ],
+              "checkver": {
+                  "github": "https://github.com/vineethkrishnan/ipwho"
+              },
+              "autoupdate": {
+                  "url": "https://github.com/vineethkrishnan/ipwho/archive/refs/tags/v\$version.tar.gz",
+                  "extract_dir": "ipwho-\$version"
+              }
+          }
+          EOF
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add ipwho.json
+          git commit -m "Update ipwho to ${{ steps.version.outputs.version }}"
+          git push

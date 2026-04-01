@@ -10,6 +10,9 @@ import { Tabs, TabItem } from '@astrojs/starlight/components';
 | Method | Requires |
 |--------|----------|
 | npm | Node.js >= 18 |
+| Homebrew | macOS or Linux |
+| Scoop | Windows |
+| Docker | Docker Engine |
 | Bash script | `curl` + `jq` |
 | PowerShell script | PowerShell 5.1+ or 7+ |
 
@@ -31,6 +34,57 @@ ipwho --version
 
 ```bash
 npx ipwho 8.8.8.8
+```
+
+## Homebrew (macOS / Linux)
+
+```bash
+brew tap vineethkrishnan/ipwho
+brew install ipwho
+```
+
+The formula is auto-updated on each release.
+
+## Scoop (Windows)
+
+```powershell
+scoop bucket add ipwho https://github.com/vineethkrishnan/scoop-ipwho
+scoop install ipwho
+```
+
+Update later with:
+
+```powershell
+scoop update ipwho
+```
+
+## Docker
+
+No installation needed — just run the image:
+
+```bash
+# Look up an IP
+docker run --rm vineethkrishnan/ipwho 8.8.8.8
+
+# Compare providers
+docker run --rm vineethkrishnan/ipwho -c 1.1.1.1
+
+# Raw JSON output
+docker run --rm vineethkrishnan/ipwho -r 8.8.8.8
+```
+
+Also available from GitHub Container Registry:
+
+```bash
+docker run --rm ghcr.io/vineethkrishnan/ipwho 8.8.8.8
+```
+
+### Use in CI pipelines
+
+```yaml
+# GitHub Actions example
+- name: Get server geolocation
+  run: docker run --rm vineethkrishnan/ipwho -r $SERVER_IP
 ```
 
 ## Standalone Bash Script (macOS / Linux)
@@ -75,6 +129,23 @@ ipwho 8.8.8.8
   <TabItem label="npm">
     ```bash
     npm uninstall -g ipwho
+    ```
+  </TabItem>
+  <TabItem label="Homebrew">
+    ```bash
+    brew uninstall ipwho
+    brew untap vineethkrishnan/ipwho
+    ```
+  </TabItem>
+  <TabItem label="Scoop">
+    ```powershell
+    scoop uninstall ipwho
+    scoop bucket rm ipwho
+    ```
+  </TabItem>
+  <TabItem label="Docker">
+    ```bash
+    docker rmi vineethkrishnan/ipwho
     ```
   </TabItem>
   <TabItem label="Bash">
