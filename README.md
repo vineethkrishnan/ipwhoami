@@ -174,8 +174,7 @@ ipwho/
 ├── Dockerfile
 ├── .github/workflows/
 │   ├── ci.yml                # Lint & test on PRs
-│   ├── release.yml           # GitHub Release + npm + Homebrew + Scoop
-│   ├── docker.yml            # Docker Hub + GHCR publish
+│   ├── release.yml           # Release Please + npm + Docker + Homebrew + Scoop
 │   └── deploy-docs.yml       # Cloudflare Pages docs deploy
 ├── package.json
 ├── CHANGELOG.md
@@ -185,22 +184,16 @@ ipwho/
 
 ## Release
 
-To publish a new version:
+Releases are fully automated via [Release Please](https://github.com/googleapis/release-please):
 
-```bash
-# 1. Bump version in package.json and src/config.js
-# 2. Update CHANGELOG.md
-# 3. Commit, tag, and push
-git tag v1.0.0
-git push origin v1.0.0
-```
-
-The release workflow automatically:
-- Creates a GitHub Release
-- Publishes to npm
-- Updates the Homebrew formula
-- Updates the Scoop manifest
-- Builds and pushes Docker images (Docker Hub + GHCR)
+1. Push commits to `main` using [Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`, etc.)
+2. Release Please auto-creates a **Release PR** that bumps `package.json`, `src/config.js`, and `CHANGELOG.md`
+3. Merge the PR to trigger the full release pipeline:
+   - Creates a GitHub Release with auto-generated notes
+   - Publishes to npm
+   - Builds and pushes Docker images (Docker Hub + GHCR)
+   - Updates the Homebrew formula
+   - Updates the Scoop manifest
 
 ## Requirements
 
