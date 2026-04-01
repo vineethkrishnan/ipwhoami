@@ -15,13 +15,13 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
 
       - name: Check syntax
         run: node --check src/**/*.js bin/**/*.js
 
-  test:
-    name: Test (Node ${{ matrix.node-version }})
+  unit-test:
+    name: Unit Tests (Node ${{ matrix.node-version }}, ${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -34,12 +34,24 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Smoke test (--help)
-        run: node bin/ipwho.js --help
+      - name: Smoke test
+        run: |
+          node bin/ipwho.js --help
+          node bin/ipwho.js --version
 
-      - name: Smoke test (--version)
-        run: node bin/ipwho.js --version
+      - name: Run unit tests
+        run: npm run test:unit
 
-      - name: Run tests
-        run: npm test
-        continue-on-error: true
+  integration-test:
+    name: Integration Tests
+    needs: unit-test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run integration tests (live network)
+        run: npm run test:integration
