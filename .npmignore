@@ -1,0 +1,5 @@
+scripts/
+.github/
+install.sh
+.gitignore
+.DS_Store

@@ -1,0 +1,47 @@
+{
+  "name": "ipwho",
+  "version": "1.0.0",
+  "description": "IP geolocation lookup from your terminal. Query multiple providers, compare results side-by-side.",
+  "type": "module",
+  "bin": {
+    "ipwho": "./bin/ipwho.js"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "start": "node bin/ipwho.js",
+    "lint": "node --check src/**/*.js bin/**/*.js",
+    "test": "node --test test/"
+  },
+  "keywords": [
+    "ip",
+    "geolocation",
+    "ipinfo",
+    "ip-lookup",
+    "cli",
+    "terminal",
+    "network",
+    "geo",
+    "ipapi",
+    "ip-api",
+    "whois",
+    "location"
+  ],
+  "author": "Vineeth Krishnan",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vineethkrishnan/ipwho.git"
+  },
+  "homepage": "https://github.com/vineethkrishnan/ipwho#readme",
+  "bugs": {
+    "url": "https://github.com/vineethkrishnan/ipwho/issues"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

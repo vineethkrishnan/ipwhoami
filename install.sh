@@ -21,7 +21,7 @@ esac
 
 # Download
 TMPFILE=$(mktemp)
-curl -fsSL "https://raw.githubusercontent.com/$REPO/main/ipwho" -o "$TMPFILE"
+curl -fsSL "https://raw.githubusercontent.com/$REPO/main/scripts/ipwho.sh" -o "$TMPFILE"
 
 # Install
 if [ -w "$INSTALL_DIR" ]; then

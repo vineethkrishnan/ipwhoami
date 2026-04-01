@@ -2,7 +2,7 @@
 
 IP geolocation lookup from your terminal. Query multiple providers and compare results side-by-side.
 
-Works on **macOS**, **Linux**, and **Windows**.
+Works on **macOS**, **Linux**, and **Windows**. Zero dependencies.
 
 ## Features
 
@@ -11,11 +11,24 @@ Works on **macOS**, **Linux**, and **Windows**.
 - Compare results across all providers at once
 - Raw JSON output for scripting and piping
 - No API keys required
-- Cross-platform: Bash (macOS/Linux) + PowerShell (Windows/macOS/Linux)
+- Zero dependencies
+- Cross-platform: Node.js, Bash, and PowerShell
 
 ## Install
 
-### macOS / Linux
+### npm (recommended)
+
+```bash
+npm install -g ipwho
+```
+
+Or run directly without installing:
+
+```bash
+npx ipwho 8.8.8.8
+```
+
+### Standalone Bash script (macOS / Linux)
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/vineethkrishnan/ipwho/main/install.sh | bash
@@ -24,22 +37,19 @@ curl -fsSL https://raw.githubusercontent.com/vineethkrishnan/ipwho/main/install.
 Or manually:
 
 ```bash
-curl -O https://raw.githubusercontent.com/vineethkrishnan/ipwho/main/ipwho
-chmod +x ipwho
-sudo mv ipwho /usr/local/bin/
+curl -O https://raw.githubusercontent.com/vineethkrishnan/ipwho/main/scripts/ipwho.sh
+chmod +x ipwho.sh
+sudo mv ipwho.sh /usr/local/bin/ipwho
 ```
 
-### Windows (PowerShell)
+### Standalone PowerShell script (Windows)
 
 ```powershell
-# Download the script
-Invoke-WebRequest -Uri "https://raw.githubusercontent.com/vineethkrishnan/ipwho/main/ipwho.ps1" -OutFile "$HOME\ipwho.ps1"
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/vineethkrishnan/ipwho/main/scripts/ipwho.ps1" -OutFile "$HOME\ipwho.ps1"
 
 # Add an alias to your PowerShell profile
 Add-Content $PROFILE 'Set-Alias ipwho "$HOME\ipwho.ps1"'
 ```
-
-Or just download `ipwho.ps1` and run it directly.
 
 ## Usage
 
@@ -111,15 +121,6 @@ Comparing geolocation for: 8.8.8.8
   Timezone:  America/Los_Angeles
 ```
 
-## Requirements
-
-### Bash version (macOS/Linux)
-- `curl`
-- `jq`
-
-### PowerShell version (Windows/macOS/Linux)
-- PowerShell 5.1+ (built into Windows) or PowerShell 7+
-
 ## Providers
 
 | Provider | HTTPS | Rate Limit | Notes |
@@ -127,6 +128,64 @@ Comparing geolocation for: 8.8.8.8
 | [ipinfo.io](https://ipinfo.io) | Yes | 50k/month free | Default provider |
 | [ipapi.co](https://ipapi.co) | Yes | 1k/day free | Good detail |
 | [ip-api.com](http://ip-api.com) | No (HTTP) | 45/min free | Includes ISP info |
+
+## Adding a Provider
+
+Providers live in `src/providers/`. To add a new one:
+
+1. Create a new file in `src/providers/` (see existing ones for the pattern)
+2. Implement the `lookup(ip)` method returning a normalized result object
+3. Register it in `src/providers/index.js`
+
+## Project Structure
+
+```
+ipwho/
+├── bin/
+│   └── ipwho.js              # CLI entry point
+├── src/
+│   ├── cli.js                # Argument parsing & command routing
+│   ├── colors.js             # Terminal color helpers
+│   ├── config.js             # Constants & defaults
+│   ├── formatter.js          # Output formatting
+│   ├── ip.js                 # IP validation & public IP resolution
+│   └── providers/
+│       ├── base.js           # Shared HTTP fetch logic
+│       ├── index.js          # Provider registry
+│       ├── ipinfo.js         # ipinfo.io
+│       ├── ipapi.js          # ipapi.co
+│       └── ip-api.js         # ip-api.com
+├── scripts/
+│   ├── ipwho.sh              # Standalone Bash version
+│   └── ipwho.ps1             # Standalone PowerShell version
+├── .github/workflows/
+│   ├── ci.yml                # Lint & test on PRs
+│   └── release.yml           # GitHub Release + npm publish on tags
+├── package.json
+├── CHANGELOG.md
+├── LICENSE
+└── README.md
+```
+
+## Release
+
+To publish a new version:
+
+```bash
+# 1. Bump version in package.json and config.js
+# 2. Update CHANGELOG.md
+# 3. Commit, tag, and push
+git tag v1.0.0
+git push origin v1.0.0
+```
+
+The GitHub Actions workflow will automatically create a GitHub Release and publish to npm.
+
+## Requirements
+
+- **npm version**: Node.js >= 18 (uses built-in `fetch`)
+- **Bash version**: `curl` + `jq`
+- **PowerShell version**: PowerShell 5.1+ or 7+
 
 ## License
 
