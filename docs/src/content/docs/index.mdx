@@ -1,0 +1,51 @@
+---
+title: ipwho
+description: IP geolocation lookup from your terminal
+template: splash
+hero:
+  tagline: Query multiple geolocation providers and compare results — right from your terminal. Zero dependencies. Cross-platform.
+  actions:
+    - text: Get Started
+      link: /getting-started/
+      icon: right-arrow
+      variant: primary
+    - text: View on GitHub
+      link: https://github.com/vineethkrishnan/ipwho
+      icon: external
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## Why ipwho?
+
+<CardGrid>
+	<Card title="Zero Dependencies" icon="rocket">
+		Node.js 18+ built-in `fetch` — no bloated `node_modules`. Install and run instantly.
+	</Card>
+	<Card title="Multiple Providers" icon="list-format">
+		Query ipinfo.io, ipapi.co, and ip-api.com. Compare results side-by-side in a single command.
+	</Card>
+	<Card title="Cross-Platform" icon="laptop">
+		npm package for any OS, standalone Bash script for macOS/Linux, PowerShell script for Windows.
+	</Card>
+	<Card title="Pipe-Friendly" icon="setting">
+		Raw JSON output mode for scripting, CI pipelines, and composing with other tools like `jq`.
+	</Card>
+</CardGrid>
+
+## Quick Start
+
+```bash
+# Install globally
+npm install -g ipwho
+
+# Look up any IP
+ipwho 8.8.8.8
+
+# Compare across all providers
+ipwho -c 1.1.1.1
+
+# Or run without installing
+npx ipwho 8.8.8.8
+```
