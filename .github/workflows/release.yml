@@ -22,6 +22,7 @@ jobs:
         with:
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
+          token: ${{ secrets.RELEASE_PAT }}
 
   publish-npm:
     name: Publish to npm
@@ -118,7 +119,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: vineethkrishnan/homebrew-ipwho
-          token: ${{ secrets.TAP_GITHUB_TOKEN }}
+          token: ${{ secrets.RELEASE_PAT }}
 
       - name: Update formula
         run: |
@@ -172,7 +173,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: vineethkrishnan/scoop-ipwho
-          token: ${{ secrets.TAP_GITHUB_TOKEN }}
+          token: ${{ secrets.RELEASE_PAT }}
 
       - name: Write updated manifest
         run: |
