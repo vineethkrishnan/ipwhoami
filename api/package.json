@@ -1,0 +1,21 @@
+{
+  "name": "ipwhoami-api",
+  "version": "1.0.0",
+  "description": "Self-hosted IP geolocation API powered by DB-IP Lite",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "test": "node --test test/ip.test.js test/response.test.js test/rate-limiter.test.js test/api.test.js",
+    "download-db": "bash scripts/download-db.sh"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.14.0",
+    "hono": "^4.7.0",
+    "maxmind": "^4.3.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "private": true
+}

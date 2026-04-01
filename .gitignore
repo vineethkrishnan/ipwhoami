@@ -5,3 +5,5 @@
 node_modules/
 prd/
 _knowledgebase/
+api/data/*.mmdb
+.plans/
