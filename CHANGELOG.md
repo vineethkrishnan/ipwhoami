@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/vineethkrishnan/ipwhoami/compare/ipwhoami-v1.2.0...ipwhoami-v1.2.1) (2026-04-01)
+
+
+### Bug Fixes
+
+* align docs with current codebase ([#5](https://github.com/vineethkrishnan/ipwhoami/issues/5)) ([d7e2db2](https://github.com/vineethkrishnan/ipwhoami/commit/d7e2db287a658ba958db6beef35848bda79cc1c9))
+
 ## [1.2.0](https://github.com/vineethkrishnan/ipwhoami/compare/ipwhoami-v1.1.1...ipwhoami-v1.2.0) (2026-04-01)
 
 
