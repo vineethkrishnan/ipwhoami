@@ -3,7 +3,7 @@ title: Getting Started
 description: Get up and running with ipwhoami in under a minute.
 ---
 
-**ipwhoami** is a command-line tool that looks up geolocation data for any IP address using free public APIs. It supports multiple providers, lets you compare results side-by-side, and outputs clean JSON for scripting.
+**ipwhoami** is a command-line tool that looks up geolocation data for any IP address. It supports multiple providers, lets you compare results side-by-side, and outputs clean JSON for scripting. It also includes a [self-hosted API](/reference/self-hosted-api/) powered by offline databases — no rate limits, no API keys.
 
 ## Quick Install
 
@@ -59,8 +59,20 @@ ipwhoami -c 1.1.1.1
 
 This queries all three providers and shows results side-by-side — useful for verifying accuracy.
 
+## Self-Hosted API
+
+Tired of rate limits? ipwhoami includes a self-hosted geolocation API that runs on your own machine using offline databases:
+
+```bash
+cd api && npm install && npm run download-db && npm start
+# curl localhost:3001/lookup/8.8.8.8
+```
+
+See the [Self-Hosted API](/reference/self-hosted-api/) guide for full details.
+
 ## What's Next?
 
 - [Installation](/installation/) — All install methods
 - [Basic Usage](/usage/basic/) — Flags, providers, and examples
 - [CLI Options](/reference/cli-options/) — Complete reference
+- [Self-Hosted API](/reference/self-hosted-api/) — Run your own geolocation API

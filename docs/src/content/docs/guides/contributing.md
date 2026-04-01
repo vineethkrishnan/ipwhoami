@@ -35,24 +35,29 @@ node --check src/**/*.js bin/**/*.js
 ```
 ipwhoami/
 ├── bin/ipwhoami.js              # CLI entry point
-├── src/
-│   ├── cli.js                # Argument parsing & routing
-│   ├── colors.js             # Terminal colors
-│   ├── config.js             # Constants
-│   ├── formatter.js          # Output formatting
-│   ├── ip.js                 # IP validation & detection
-│   └── providers/
-│       ├── base.js           # Shared fetch logic
-│       ├── index.js          # Provider registry
-│       ├── ipinfo.js         # ipinfo.io
-│       ├── ipapi.js          # ipapi.co
-│       └── ip-api.js         # ip-api.com
-├── api/                      # Self-hosted geolocation API
-│   ├── src/                  # Hono app, DB loader, rate limiter
-│   ├── test/                 # API tests
-│   └── scripts/              # DB download script
-├── scripts/                  # Standalone Bash/PowerShell
-├── docs/                     # This documentation (Starlight)
+├── src/                         # CLI source code
+│   ├── cli.js                   # Argument parsing & routing
+│   ├── colors.js                # Terminal colors
+│   ├── config.js                # Constants
+│   ├── formatter.js             # Output formatting
+│   ├── ip.js                    # IP validation & detection
+│   └── providers/               # Geolocation provider implementations
+│       ├── base.js              # Shared fetch logic
+│       ├── index.js             # Provider registry
+│       ├── ipinfo.js            # ipinfo.io
+│       ├── ipapi.js             # ipapi.co
+│       └── ip-api.js            # ip-api.com
+├── test/                        # CLI unit & integration tests
+├── api/                         # Self-hosted geolocation API
+│   ├── src/                     # Hono app, DB loader, rate limiter
+│   ├── test/                    # API tests
+│   └── scripts/                 # DB download script
+├── scripts/                     # Standalone Bash/PowerShell
+├── docs/                        # This documentation (Starlight)
+├── Dockerfile                   # Docker image for CLI
+├── package.json
+├── LICENSE
+└── README.md
 ```
 
 ## Making Changes
