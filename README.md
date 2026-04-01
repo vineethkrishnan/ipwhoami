@@ -1,66 +1,105 @@
-# ipwhoami
+<p align="center">
+  <h1 align="center">ipwhoami</h1>
+  <p align="center">
+    <strong>IP geolocation lookup from your terminal</strong>
+  </p>
+  <p align="center">
+    Query multiple providers. Compare results side-by-side. Zero dependencies.
+  </p>
+  <p align="center">
+    <a href="https://www.npmjs.com/package/ipwhoami"><img src="https://img.shields.io/npm/v/ipwhoami?color=blue&label=npm" alt="npm version"></a>
+    <a href="https://github.com/vineethkrishnan/ipwhoami/actions/workflows/ci.yml"><img src="https://github.com/vineethkrishnan/ipwhoami/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+    <a href="https://github.com/vineethkrishnan/ipwhoami/blob/main/LICENSE"><img src="https://img.shields.io/npm/l/ipwhoami?color=green" alt="License"></a>
+    <a href="https://www.npmjs.com/package/ipwhoami"><img src="https://img.shields.io/npm/dm/ipwhoami?color=orange" alt="Downloads"></a>
+    <a href="https://img.shields.io/node/v/ipwhoami"><img src="https://img.shields.io/node/v/ipwhoami?color=brightgreen" alt="Node version"></a>
+  </p>
+  <p align="center">
+    <a href="https://ipwhoami-docs.vineethnk.in"><strong>Documentation</strong></a>
+    &nbsp;&bull;&nbsp;
+    <a href="https://github.com/vineethkrishnan/ipwhoami/issues">Report Bug</a>
+    &nbsp;&bull;&nbsp;
+    <a href="https://github.com/vineethkrishnan/ipwhoami/issues">Request Feature</a>
+  </p>
+</p>
 
-IP geolocation lookup from your terminal. Query multiple providers and compare results side-by-side.
+<br/>
 
-Works on **macOS**, **Linux**, and **Windows**. Zero dependencies.
+```bash
+$ ipwhoami 8.8.8.8
 
-## Features
+[ipinfo]
+  IP         8.8.8.8
+  City       Mountain View
+  Region     California
+  Country    US
+  Org        AS15169 Google LLC
+  Location   37.4056,-122.0775
+  Timezone   America/Los_Angeles
+```
 
-- Look up geolocation for any IP address (or auto-detect yours)
-- Choose from 3 providers: [ipinfo.io](https://ipinfo.io), [ipapi.co](https://ipapi.co), [ip-api.com](http://ip-api.com)
-- Compare results across all providers at once
-- Raw JSON output for scripting and piping
-- No API keys required
-- Zero dependencies
-- Cross-platform: Node.js, Bash, and PowerShell
+<br/>
+
+## Quick Start
+
+```bash
+# Install globally
+npm install -g ipwhoami
+
+# Or run instantly without installing
+npx ipwhoami 8.8.8.8
+```
+
+## Why ipwhoami?
+
+- **Zero dependencies** — Uses Node.js 18+ built-in `fetch`. No bloated `node_modules`.
+- **Multiple providers** — Query [ipinfo.io](https://ipinfo.io), [ipapi.co](https://ipapi.co), and [ip-api.com](http://ip-api.com) from one tool.
+- **Compare mode** — See how providers differ for the same IP, side-by-side.
+- **Pipe-friendly** — Raw JSON output for scripting, CI pipelines, and composing with `jq`.
+- **Cross-platform** — npm, Homebrew, Scoop, Docker, standalone Bash & PowerShell scripts.
+- **No API keys** — Works out of the box with free tiers.
 
 ## Install
 
-### npm (recommended)
+<table>
+<tr><td><strong>npm</strong></td><td>
 
 ```bash
 npm install -g ipwhoami
 ```
 
-Or run directly without installing:
+</td></tr>
+<tr><td><strong>Homebrew</strong></td><td>
 
 ```bash
-npx ipwhoami 8.8.8.8
+brew tap vineethkrishnan/ipwhoami && brew install ipwhoami
 ```
 
-### Homebrew (macOS / Linux)
-
-```bash
-brew tap vineethkrishnan/ipwhoami
-brew install ipwhoami
-```
-
-### Scoop (Windows)
+</td></tr>
+<tr><td><strong>Scoop</strong></td><td>
 
 ```powershell
 scoop bucket add ipwhoami https://github.com/vineethkrishnan/scoop-ipwhoami
 scoop install ipwhoami
 ```
 
-### Docker
+</td></tr>
+<tr><td><strong>Docker</strong></td><td>
 
 ```bash
 docker run --rm vineethnkrishnan/ipwhoami 8.8.8.8
-docker run --rm vineethnkrishnan/ipwhoami -c 1.1.1.1
 ```
 
-### Standalone Bash script (macOS / Linux)
+</td></tr>
+<tr><td><strong>Shell</strong></td><td>
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/vineethkrishnan/ipwhoami/main/install.sh | bash
 ```
 
-### Standalone PowerShell script (Windows)
+</td></tr>
+</table>
 
-```powershell
-Invoke-WebRequest -Uri "https://raw.githubusercontent.com/vineethkrishnan/ipwhoami/main/scripts/ipwhoami.ps1" -OutFile "$HOME\ipwhoami.ps1"
-Add-Content $PROFILE 'Set-Alias ipwhoami "$HOME\ipwhoami.ps1"'
-```
+> See the [Installation Guide](https://ipwhoami-docs.vineethnk.in/installation/) for all methods including PowerShell and manual install.
 
 ## Usage
 
@@ -68,11 +107,9 @@ Add-Content $PROFILE 'Set-Alias ipwhoami "$HOME\ipwhoami.ps1"'
 ipwhoami [options] [ip]
 ```
 
-### Options
-
 | Flag | Description |
 |------|-------------|
-| `-p, --provider NAME` | Use a specific provider: `ipinfo`, `ipapi`, `ip-api` (default: `ipinfo`) |
+| `-p, --provider NAME` | Provider: `ipinfo`, `ipapi`, `ip-api` (default: `ipinfo`) |
 | `-c, --compare` | Compare results from all providers |
 | `-r, --raw` | Output raw JSON |
 | `-h, --help` | Show help |
@@ -81,23 +118,14 @@ ipwhoami [options] [ip]
 ### Examples
 
 ```bash
-# Look up your own public IP
-ipwhoami
-
-# Look up a specific IP
-ipwhoami 8.8.8.8
-
-# Compare across all providers
-ipwhoami -c 1.1.1.1
-
-# Use a specific provider
-ipwhoami -p ipapi 8.8.8.8
-
-# Get raw JSON (great for piping)
-ipwhoami -r 8.8.8.8 | jq .city
+ipwhoami                        # Your public IP
+ipwhoami 8.8.8.8                # Specific IP
+ipwhoami -c 1.1.1.1             # Compare all providers
+ipwhoami -p ipapi 8.8.8.8       # Choose provider
+ipwhoami -r 8.8.8.8 | jq .city  # Raw JSON, pipe to jq
 ```
 
-### Sample Output
+### Compare Mode
 
 ```
 $ ipwhoami -c 8.8.8.8
@@ -105,103 +133,63 @@ Comparing geolocation for: 8.8.8.8
 ────────────────────────────────────────
 
 [ipinfo]
-  IP:        8.8.8.8
-  City:      Mountain View
-  Region:    California
-  Country:   US
-  Org:       AS15169 Google LLC
-  Location:  37.4056,-122.0775
-  Timezone:  America/Los_Angeles
+  IP         8.8.8.8
+  City       Mountain View
+  Region     California
+  Country    US
+  Org        AS15169 Google LLC
+  Location   37.4056,-122.0775
+  Timezone   America/Los_Angeles
 
 [ipapi]
-  IP:        8.8.8.8
-  City:      Mountain View
-  Region:    California
-  Country:   United States
-  Org:       Google LLC
-  Location:  37.4223, -122.085
-  Timezone:  America/Los_Angeles
+  IP         8.8.8.8
+  City       Mountain View
+  Region     California
+  Country    United States
+  Org        Google LLC
+  Location   37.4223, -122.085
+  Timezone   America/Los_Angeles
 
 [ip-api]
-  IP:        8.8.8.8
-  City:      Mountain View
-  Region:    California
-  Country:   United States
-  ISP:       Google LLC
-  Location:  37.4056, -122.0775
-  Timezone:  America/Los_Angeles
+  IP         8.8.8.8
+  City       Mountain View
+  Region     California
+  Country    United States
+  ISP        Google LLC
+  Location   37.4056, -122.0775
+  Timezone   America/Los_Angeles
 ```
 
 ## Providers
 
 | Provider | HTTPS | Rate Limit | Notes |
 |----------|-------|------------|-------|
-| [ipinfo.io](https://ipinfo.io) | Yes | 50k/month free | Default provider |
-| [ipapi.co](https://ipapi.co) | Yes | 1k/day free | Good detail |
-| [ip-api.com](http://ip-api.com) | No (HTTP) | 45/min free | Includes ISP info |
+| [ipinfo.io](https://ipinfo.io) | Yes | 50k/month | Default |
+| [ipapi.co](https://ipapi.co) | Yes | 1k/day | Full country names |
+| [ip-api.com](http://ip-api.com) | No | 45/min | ISP info |
 
-## Adding a Provider
+## Contributing
 
-Providers live in `src/providers/`. To add a new one:
+Contributions are welcome! ipwhoami uses a clean **provider pattern** — adding a new geolocation source is just one file + one line.
 
-1. Create a new file in `src/providers/` (see existing ones for the pattern)
-2. Implement the `lookup(ip)` method returning a normalized result object
-3. Register it in `src/providers/index.js`
-
-## Project Structure
-
-```
-ipwhoami/
-├── bin/
-│   └── ipwhoami.js              # CLI entry point
-├── src/
-│   ├── cli.js                # Argument parsing & command routing
-│   ├── colors.js             # Terminal color helpers
-│   ├── config.js             # Constants & defaults
-│   ├── formatter.js          # Output formatting
-│   ├── ip.js                 # IP validation & public IP resolution
-│   └── providers/
-│       ├── base.js           # Shared HTTP fetch logic
-│       ├── index.js          # Provider registry
-│       ├── ipinfo.js         # ipinfo.io
-│       ├── ipapi.js          # ipapi.co
-│       └── ip-api.js         # ip-api.com
-├── scripts/
-│   ├── ipwhoami.sh              # Standalone Bash version
-│   └── ipwhoami.ps1             # Standalone PowerShell version
-├── test/                     # Unit & integration tests
-├── docs/                     # Starlight documentation site
-├── Dockerfile
-├── .github/workflows/
-│   ├── ci.yml                # Lint & test on PRs
-│   ├── release.yml           # Release Please + npm + Docker + Homebrew + Scoop
-│   └── deploy-docs.yml       # Cloudflare Pages docs deploy
-├── package.json
-├── CHANGELOG.md
-├── LICENSE
-└── README.md
+```bash
+git clone https://github.com/vineethkrishnan/ipwhoami.git
+cd ipwhoami
+node bin/ipwhoami.js 8.8.8.8  # zero dependencies, works immediately
 ```
 
-## Release
+See the [Contributing Guide](https://ipwhoami-docs.vineethnk.in/guides/contributing/) and [Adding a Provider](https://ipwhoami-docs.vineethnk.in/guides/adding-a-provider/) docs.
 
-Releases are fully automated via [Release Please](https://github.com/googleapis/release-please):
+## Documentation
 
-1. Push commits to `main` using [Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`, etc.)
-2. Release Please auto-creates a **Release PR** that bumps `package.json`, `src/config.js`, and `CHANGELOG.md`
-3. Merge the PR to trigger the full release pipeline:
-   - Creates a GitHub Release with auto-generated notes
-   - Publishes to npm
-   - Builds and pushes Docker images (Docker Hub + GHCR)
-   - Updates the Homebrew formula
-   - Updates the Scoop manifest
+Full documentation is available at **[ipwhoami-docs.vineethnk.in](https://ipwhoami-docs.vineethnk.in)**
 
-## Requirements
-
-- **npm / Homebrew / Scoop**: Node.js >= 18
-- **Docker**: No requirements (Node.js included in image)
-- **Bash script**: `curl` + `jq`
-- **PowerShell script**: PowerShell 5.1+ or 7+
+- [Getting Started](https://ipwhoami-docs.vineethnk.in/getting-started/)
+- [Installation](https://ipwhoami-docs.vineethnk.in/installation/)
+- [CLI Reference](https://ipwhoami-docs.vineethnk.in/reference/cli-options/)
+- [Providers](https://ipwhoami-docs.vineethnk.in/reference/providers/)
+- [Adding a Provider](https://ipwhoami-docs.vineethnk.in/guides/adding-a-provider/)
 
 ## License
 
-[MIT](LICENSE)
+[MIT](LICENSE) &copy; [Vineeth Krishnan](https://github.com/vineethkrishnan)
