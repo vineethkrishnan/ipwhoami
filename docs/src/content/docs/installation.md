@@ -64,13 +64,13 @@ No installation needed — just run the image:
 
 ```bash
 # Look up an IP
-docker run --rm vineethkrishnan/ipwhoami 8.8.8.8
+docker run --rm vineethnkrishnan/ipwhoami 8.8.8.8
 
 # Compare providers
-docker run --rm vineethkrishnan/ipwhoami -c 1.1.1.1
+docker run --rm vineethnkrishnan/ipwhoami -c 1.1.1.1
 
 # Raw JSON output
-docker run --rm vineethkrishnan/ipwhoami -r 8.8.8.8
+docker run --rm vineethnkrishnan/ipwhoami -r 8.8.8.8
 ```
 
 Also available from GitHub Container Registry:
@@ -84,7 +84,7 @@ docker run --rm ghcr.io/vineethkrishnan/ipwhoami 8.8.8.8
 ```yaml
 # GitHub Actions example
 - name: Get server geolocation
-  run: docker run --rm vineethkrishnan/ipwhoami -r $SERVER_IP
+  run: docker run --rm vineethnkrishnan/ipwhoami -r $SERVER_IP
 ```
 
 ## Standalone Bash Script (macOS / Linux)
@@ -145,7 +145,7 @@ ipwhoami 8.8.8.8
   </TabItem>
   <TabItem label="Docker">
     ```bash
-    docker rmi vineethkrishnan/ipwhoami
+    docker rmi vineethnkrishnan/ipwhoami
     ```
   </TabItem>
   <TabItem label="Bash">

@@ -90,8 +90,8 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm64
           tags: |
-            vineethkrishnan/ipwhoami:latest
-            vineethkrishnan/ipwhoami:${{ needs.release-please.outputs.version }}
+            vineethnkrishnan/ipwhoami:latest
+            vineethnkrishnan/ipwhoami:${{ needs.release-please.outputs.version }}
             ghcr.io/vineethkrishnan/ipwhoami:latest
             ghcr.io/vineethkrishnan/ipwhoami:${{ needs.release-please.outputs.version }}
           cache-from: type=gha

@@ -45,8 +45,8 @@ scoop install ipwhoami
 ### Docker
 
 ```bash
-docker run --rm vineethkrishnan/ipwhoami 8.8.8.8
-docker run --rm vineethkrishnan/ipwhoami -c 1.1.1.1
+docker run --rm vineethnkrishnan/ipwhoami 8.8.8.8
+docker run --rm vineethnkrishnan/ipwhoami -c 1.1.1.1
 ```
 
 ### Standalone Bash script (macOS / Linux)
