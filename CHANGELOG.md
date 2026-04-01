@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/vineethkrishnan/ipwhoami/compare/ipwhoami-v1.1.0...ipwhoami-v1.1.1) (2026-04-01)
+
+
+### Bug Fixes
+
+* **ci:** use correct Docker Hub username (vineethnkrishnan) ([5978f64](https://github.com/vineethkrishnan/ipwhoami/commit/5978f643f3186b0e5a16257aa085dfde9950cdfd))
+
 ## [1.1.0](https://github.com/vineethkrishnan/ipwhoami/compare/ipwhoami-v1.0.0...ipwhoami-v1.1.0) (2026-04-01)
 
 
