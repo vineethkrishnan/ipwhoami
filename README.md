@@ -14,7 +14,7 @@
     <a href="https://img.shields.io/node/v/ipwhoami"><img src="https://img.shields.io/node/v/ipwhoami?color=brightgreen" alt="Node version"></a>
   </p>
   <p align="center">
-    <a href="https://ipwhoami-docs.vineethnk.in"><strong>Documentation</strong></a>
+    <a href="https://ipwhoami-docs.vinelabs.de"><strong>Documentation</strong></a>
     &nbsp;&bull;&nbsp;
     <a href="https://github.com/vineethkrishnan/ipwhoami/issues">Report Bug</a>
     &nbsp;&bull;&nbsp;
@@ -99,7 +99,7 @@ curl -fsSL https://raw.githubusercontent.com/vineethkrishnan/ipwhoami/main/insta
 </td></tr>
 </table>
 
-> See the [Installation Guide](https://ipwhoami-docs.vineethnk.in/installation/) for all methods including PowerShell and manual install.
+> See the [Installation Guide](https://ipwhoami-docs.vinelabs.de/installation/) for all methods including PowerShell and manual install.
 
 ## Usage
 
@@ -178,17 +178,17 @@ cd ipwhoami
 node bin/ipwhoami.js 8.8.8.8  # zero dependencies, works immediately
 ```
 
-See the [Contributing Guide](https://ipwhoami-docs.vineethnk.in/guides/contributing/) and [Adding a Provider](https://ipwhoami-docs.vineethnk.in/guides/adding-a-provider/) docs.
+See the [Contributing Guide](https://ipwhoami-docs.vinelabs.de/guides/contributing/) and [Adding a Provider](https://ipwhoami-docs.vinelabs.de/guides/adding-a-provider/) docs.
 
 ## Documentation
 
-Full documentation is available at **[ipwhoami-docs.vineethnk.in](https://ipwhoami-docs.vineethnk.in)**
+Full documentation is available at **[ipwhoami-docs.vinelabs.de](https://ipwhoami-docs.vinelabs.de)**
 
-- [Getting Started](https://ipwhoami-docs.vineethnk.in/getting-started/)
-- [Installation](https://ipwhoami-docs.vineethnk.in/installation/)
-- [CLI Reference](https://ipwhoami-docs.vineethnk.in/reference/cli-options/)
-- [Providers](https://ipwhoami-docs.vineethnk.in/reference/providers/)
-- [Adding a Provider](https://ipwhoami-docs.vineethnk.in/guides/adding-a-provider/)
+- [Getting Started](https://ipwhoami-docs.vinelabs.de/getting-started/)
+- [Installation](https://ipwhoami-docs.vinelabs.de/installation/)
+- [CLI Reference](https://ipwhoami-docs.vinelabs.de/reference/cli-options/)
+- [Providers](https://ipwhoami-docs.vinelabs.de/reference/providers/)
+- [Adding a Provider](https://ipwhoami-docs.vinelabs.de/guides/adding-a-provider/)
 
 ## License
 
